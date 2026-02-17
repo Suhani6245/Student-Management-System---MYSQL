@@ -1,14 +1,16 @@
 #database=project
 #table- students_data
 import mysql.connector as mys
-mycon= mys.connect(host='localhost',user='root',passwd='your_password_here',database= 'project')
+mycon= mys.connect(host='localhost',user='root',passwd='<your_password_here>',database= 'project')
 cursor=mycon.cursor()
 
+#checking connection
 if mycon.is_connected():
     print('~~~~~~~~~~~~~~~CONNECTION ESTABLISHED~~~~~~~~~~~~~~~~~~')
 else:
     print('TRY AGAIN :(')
 
+#defining functions for the operations
 def add():
     n=int(input('enter how many students data to add:: '))
     for a in range(n):
@@ -68,6 +70,8 @@ enter 'a for all and s for specific display of data- ''')
         dt=cursor.fetchone()
         for i in dt:
             print(i)
+
+
 #main menu
 print('----------------------MAIN MENU------------------------')
 print('''1)ADD DATA

@@ -1,6 +1,6 @@
-import streamlit as st
-import mysql.connector as mys
-import pandas as pd
+import streamlit as st     #python library for web app design
+import mysql.connector as mys          #library to create python-MYSQL interface 
+import pandas as pd    #for visual data view like table  
 
 #table name - students
 #database - project
@@ -9,12 +9,14 @@ import pandas as pd
 mycon = mys.connect(
     host='localhost',
     user='root',
-    passwd='<your password here>',
+    passwd='<your_password_here>',
     database='project'
 )
 
 cursor = mycon.cursor()
 
+
+#Web App design 
 st.title("🎓Student Management System")
 
 # Sidebar
@@ -36,7 +38,7 @@ if menu == "Add Data":
 
     if st.button("Add Student"):
 
-    # Check if roll number already exists in same class
+        # Check if entered roll number already exists in same class
         cursor.execute("SELECT * FROM students WHERE Class=%s AND RollNo=%s",(cls, rollno))
         conflict = cursor.fetchone()
 
@@ -70,7 +72,7 @@ elif menu == "Update Data":
 
     if st.button("Update"):
 
-    # First check if student exists
+        #Checking if student exists
         cursor.execute("SELECT * FROM students WHERE Admn_No=%s", (admNo,))
         student = cursor.fetchone()
 
@@ -132,9 +134,15 @@ elif menu == "Delete Data":
     admNo = st.number_input("Enter admission number of student", min_value=1, step=1)
 
     if st.button("Delete"):
-        cursor.execute("DELETE FROM students WHERE Admn_No=%s", (admNo,))
-        mycon.commit()
-        st.warning("Student deleted successfully!")
+        #checking if the Admission number exists
+        cursor.execute("SELECT * FROM students WHERE Admn_No=%s", (admNo,))
+        conflict = cursor.fetchone()
+        if conflict:
+            cursor.execute("DELETE FROM students WHERE Admn_No=%s", (admNo,))
+            mycon.commit()
+            st.warning("Student deleted successfully!")
+        else:
+            st.error("Admission number does not exist!")
 
 # ---------------- DISPLAY DATA ----------------
 elif menu == "Display Data":
@@ -145,7 +153,7 @@ elif menu == "Display Data":
     # ---------------- CLASS WISE ----------------
     if option == "Class-wise":
 
-        # Get available classes from DB
+        # Get available classes as options from database
         cursor.execute("SELECT DISTINCT class FROM students ORDER BY class")
         classes = cursor.fetchall()
 
