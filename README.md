@@ -26,18 +26,28 @@
 - Pandas – basic data manipulation
 - Python - improved coding practices and project structuring
 
+## Prerequisites
+- Python 3.9+
+- MySQL installed and running
+
 ## Installation & Usage
 
-1. Clone or download this repository:
-   ```bash
-   git clone https://github.com/Suhani6245/Student-Management-System---MYSQL.git
-2. Navigate to project folder
-   ```bash
-   cd Student-Management-System-Streamlit
-   
-3. Install dependencies
-   ```bash
-   pip install -r requirements.txt
-4. Run the app
-   ```bash
-   streamlit run app.py
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/Suhani6245/Student-Management-System---MYSQL.git
+```
+
+### 2️⃣ Navigate to the project folder
+```bash
+cd Student-Management-System---MYSQL
+```
+
+### 3️⃣ Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 4️⃣ Run the application
+```bash
+streamlit run app.py
+```
